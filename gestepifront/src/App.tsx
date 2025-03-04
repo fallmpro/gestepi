@@ -1,27 +1,40 @@
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useState } from "react";
 import "./App.css";
 
 function App() {
-    console.log("");
+  return (
+    <Router>
+      <div className="app-container">
+        <nav className="navbar">
+          <h1>Gestion des EPI</h1>
+          <div className="nav-links">
+            <Link to="/">Accueil</Link>
+            <Link to="/saisie-epi">Saisie EPI</Link>
+            <Link to="/saisie-controle">Saisie Contrôle</Link>
+            <Link to="/historique">Historique</Link>
+            <Link to="/alertes">Alertes</Link>
+          </div>
+        </nav>
 
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/saisie-epi" element={<SaisieEPI />} />
+            <Route path="/saisie-controle" element={<SaisieControle />} />
+            <Route path="/historique" element={<Historique />} />
+            <Route path="/alertes" element={<Alertes />} />
+          </Routes>
         </div>
-    );
+      </div>
+    </Router>
+  );
 }
+
+const Home = () => <div className="page">Bienvenue dans l'application de gestion des EPI</div>;
+const SaisieEPI = () => <div className="page">Formulaire de saisie d'un EPI</div>;
+const SaisieControle = () => <div className="page">Formulaire de saisie d'un contrôle</div>;
+const Historique = () => <div className="page">Liste des EPI et leur historique</div>;
+const Alertes = () => <div className="page">Alertes pour les contrôles à venir</div>;
 
 export default App;
